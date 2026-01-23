@@ -21,14 +21,13 @@
             font-size: 2.0rem;
             font-weight: bold;
         }
-        /* --- MODIFIED: Main container layout --- */
         .main-container {
             display: flex;
-            flex-direction: column; /* Changed to column for vertical stacking */
-            align-items: center;   /* Center panels horizontally */
+            flex-direction: column;
+            align-items: center;
             gap: 30px;
             width: 100%;
-            max-width: 900px;     /* Adjusted max-width for stacked layout */
+            max-width: 900px;
         }
         .left-panel, .right-panel {
             background-color: #fff;
@@ -36,8 +35,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
-            width: 100%;           /* Make panels take full width of container */
-            max-width: 800px;     /* Set a max-width for the panels */
+            width: 100%;
+            max-width: 800px;
         }
         .input-group {
             display: flex;
@@ -190,7 +189,6 @@
         .music-button:nth-child(5n) { background-color: #00b894; }
         .music-button:nth-child(6n) { background-color: #ff7675; }
     </style>
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIuONENTquZTtg4Ag67aA7Iug65287J2QIiwKICAic2hvcnRfbmFtZSI6ICLrrLzsp4DshLzthqAiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YwZjJmNSIsCiAgInRoZW1lX2NvbG9yIjogIiMwMDdiZmYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJodHRwczovL3VwbG9hZC53aWtpbWVkaWEub3JnL3dpa2lwZWRpYS9jb21tb25zLzQvNDEvTXVzaWNfbm90ZV9pY29uLnN2ZyIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly91cGxvYWQud2lraW1lZGlhLm9yZy93aWtpbWVkaWEvY29tbW9ucy80LzQxL011c2ljX25vdGVfaWNvbi5zdmciLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiCiAgICB9CiAgXQp9">
 </head>
 <body>
     <h1>노래틀기</h1>
@@ -256,6 +254,8 @@
             { name: "선수입장", link: "https://youtu.be/pjd2ZG9UBkA?si=fRc3nYVwvOFjtrUq" },
             { name: "캐리비안해적", link: "https://youtu.be/jtGUQFky0KI?list=RDjtGUQFky0KI&t=5" },
             { name: "별노래모음", link: "https://youtu.be/K12gJsx-e3A?t=4" },
+            { name: "유키쿠라모토", link: "https://www.youtube.com/watch?v=eSO9Yrwvv4w&list=RDeSO9Yrwvv4w&start_radio=1" },
+            { name: "달빛", link: "https://www.youtube.com/watch?v=1K6nnTMd9zw&list=RD1K6nnTMd9zw&start_radio=1" },
         ];
         
         function loadYouTubeAPI() {
@@ -509,6 +509,4 @@
         });
     </script>
 </body>
-
 </html>
-
