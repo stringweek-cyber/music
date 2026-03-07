@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>노래틀기</title>
     <style>
-        /* 전체 사이즈 80% 축소 적용 */
-        html {
-            font-size: 80%;
-        }
         body {
+            /* 전체 사이즈 80% 축소 제거: 원래 크기로 복구 */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background-color: #f0f2f5;
             color: #333;
@@ -31,7 +28,8 @@
             align-items: center;
             gap: 30px;
             width: 100%;
-            max-width: 900px;
+            /* 기존 900px에서 80%인 720px로 수정 */
+            max-width: 720px;
         }
         .left-panel, .right-panel {
             background-color: #fff;
@@ -40,7 +38,8 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
             width: 100%;
-            max-width: 800px;
+            /* 기존 800px에서 80%인 640px로 수정 */
+            max-width: 640px;
         }
         .input-group {
             display: flex;
@@ -435,11 +434,8 @@
         }
 
         function createMusicButton() {
-            const buttonNameInput = document.getElementById('buttonName');
-            const youtubeLinkInput = document.getElementById('youtubeLink');
-            const buttonName = buttonNameInput.value.trim();
-            const youtubeLink = youtubeLinkInput.value.trim();
-            
+            const buttonName = document.getElementById('buttonName').value.trim();
+            const youtubeLink = document.getElementById('youtubeLink').value.trim();
             if (!buttonName || !youtubeLink) { alert('버튼 이름과 유튜브 링크를 모두 입력해주세요.'); return; }
             const videoInfo = getYouTubeVideoInfo(youtubeLink);
             if (!videoInfo.videoId) { alert('유효한 형식의 유튜브 링크를 입력해주세요.'); return; }
@@ -451,18 +447,9 @@
             }
             storedButtons.push(newButton);
             saveButtons(storedButtons); renderButtons();
-            buttonNameInput.value = '';
-            youtubeLinkInput.value = '';
+            document.getElementById('buttonName').value = '';
+            document.getElementById('youtubeLink').value = '';
         }
-
-        /* 엔터 키 이벤트 리스너 추가 */
-        const handleEnterKey = (e) => {
-            if (e.key === 'Enter') {
-                createMusicButton();
-            }
-        };
-        document.getElementById('buttonName').addEventListener('keypress', handleEnterKey);
-        document.getElementById('youtubeLink').addEventListener('keypress', handleEnterKey);
 
         function deleteMusicButton(linkToDelete) {
             fixedButtonsData = fixedButtonsData.filter(button => button.link !== linkToDelete);
@@ -522,6 +509,17 @@
             updateLoopToggleButton();
             updateVolumeIcon(100);
             volumeIcon.addEventListener('click', toggleMute);
+
+            /* 입력창 엔터 키 이벤트 핸들러 유지 */
+            const setupEnterKey = (id) => {
+                document.getElementById(id).addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        createMusicButton();
+                    }
+                });
+            };
+            setupEnterKey('buttonName');
+            setupEnterKey('youtubeLink');
         });
     </script>
 </body>
