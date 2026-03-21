@@ -340,15 +340,24 @@
         }
 
         // ── 광고 감지 시작 ──
+        // player.playerInfo 내부 속성으로 광고 감지 (비공개 API이지만 실동작)
+        function isAdCurrentlyPlaying() {
+            if (!player || !player.playerInfo) return false;
+            // 방법 1: advertisementPlaying 플래그
+            if (player.playerInfo.advertisementPlaying === true) return true;
+            // 방법 2: playerType이 'AD'
+            if (player.playerInfo.playerType === 'AD') return true;
+            // 방법 3: adPlaying 플래그 (구버전 호환)
+            if (player.playerInfo.adPlaying === true) return true;
+            return false;
+        }
+
         function startAdDetection() {
             stopAdDetection();
             adCheckIntervalId = setInterval(() => {
-                if (!player || typeof player.getVideoData !== 'function') return;
+                if (!player || !player.playerInfo) return;
                 try {
-                    const data = player.getVideoData();
-                    const nowId = data && data.video_id;
-                    // 현재 재생 중인 video_id가 우리가 선택한 것과 다르면 → 광고
-                    const adDetected = nowId && nowId !== currentVideoId;
+                    const adDetected = isAdCurrentlyPlaying();
                     if (adDetected && !isAdPlaying) {
                         isAdPlaying = true;
                         showAdBanner(true);
@@ -359,7 +368,7 @@
                         muteForAd(false);
                     }
                 } catch(e) {}
-            }, 700);
+            }, 500);
         }
 
         function stopAdDetection() {
